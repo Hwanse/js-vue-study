@@ -8,15 +8,16 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div>
+  <div id="app">
     <header>
       <h2 class="container">검색</h2>
     </header>
 
     <div class="container">
-      
+      {{msg}} <!-- Vue에 마운팅된 DOM에서 데이터를 참조할 때 중괄호 2개로 감싸 표현 -->
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script type="module" src="./js/app.js"></script>
 </body>
 </html>
