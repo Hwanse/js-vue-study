@@ -11,13 +11,15 @@ const tag = '[MainController]'
 export default {
   init() {
     FormView.setup(document.querySelector('form'))
-        .on('@submit', e => this.onSubmit(e.detail.input))
-        .on('@reset', e => this.onResetForm())
+      .on('@submit', e => this.onSubmit(e.detail.input))
+      .on('@reset', e => this.onResetForm())
 
     TabView.setup(document.querySelector('#tabs'))
-        .on('@change', e => this.onChangeTab(e.detail.tabName))
+      .on('@change', e => this.onChangeTab(e.detail.tabName))
 
     KeywordView.setup(document.querySelector('#search-keyword'))
+      .on('@click', e => this.onClickKeyword(e.detail.keyword))
+
     ResultView.setup(document.querySelector('#search-result'))
 
     this.selectedTab = '추천 검색어'
@@ -44,8 +46,6 @@ export default {
   },
 
   search(query) {
-    console.log(tag, 'search()', query)
-    // search api
     SearchMopdel.list(query).then(data => {
       this.onSearchResult(data)
     })
@@ -54,7 +54,6 @@ export default {
   onSubmit(input) {
     console.log(tag, 'onSubmit()', input)
     this.search(input)
-    ResultView.show()
   },
 
   onResetForm() {
@@ -63,12 +62,17 @@ export default {
   },
 
   onSearchResult(data) {
+    TabView.hide()
+    KeywordView.hide()
     ResultView.render(data)
   },
 
   onChangeTab(tabName) {
-    console.log(tag, 'onChangeTab()', tabName)
-    // debugger
+    debugger
+  },
+
+  onClickKeyword(keyword) {
+    this.search(keyword)
   }
 
 }
