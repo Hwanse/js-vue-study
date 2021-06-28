@@ -13,8 +13,15 @@
       <h2 class="container">검색</h2>
     </header>
 
-    <div class="container">
-      {{msg}} <!-- Vue에 마운팅된 DOM에서 데이터를 참조할 때 중괄호 2개로 감싸 표현 -->
+    <div clas s="container">
+      <form v-on:submit.prevent="onSubmit">
+        <!-- 
+          v-model 은 실제 Vue 인스턴스의 query라는 데이터 항목과 아래 input 태그가 바인딩되어
+          마치 동기화가 된것처럼 input의 value가 data.query 에 자동으로 값이 들어가 있다.
+        -->
+        <input type="text" v-model="query" placeholder="검색어를 입력하세요" autofocus>
+        <button v-show="query.length" type="reset" class="btn-reset"></button>
+      </form>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
