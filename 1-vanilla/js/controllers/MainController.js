@@ -25,13 +25,16 @@ export default {
   onSubmit(input) {
     console.log(tag, 'onSubmit()', input)
     this.search(input)
+    ResultView.show()
   },
 
   onResetForm() {
     console.log(tag, 'onResetForm()')
+    ResultView.hide()
   },
 
   onSearchResult(data) {
     ResultView.render(data)
   }
+
 }
