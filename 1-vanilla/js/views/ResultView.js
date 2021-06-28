@@ -14,7 +14,7 @@ ResultView.setup = function (el) {
 
 ResultView.render = function (data = []) {
     this.el.innerHTML = data.length ? this.getSearchResultsHtml(data) : this.messages.NO_RESULT
-    ResultView.show()
+    this.show()
 }
 
 ResultView.getSearchResultsHtml = function (data) {

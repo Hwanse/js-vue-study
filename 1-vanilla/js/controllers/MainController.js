@@ -33,7 +33,7 @@ export default {
     if (this.selectedTab === '추천 검색어') {
       this.fetchSearchKeyword()
     } else {
-
+      debugger
     }
     
     ResultView.hide()
@@ -46,19 +46,18 @@ export default {
   },
 
   search(query) {
+    FormView.setValue(query)
     SearchMopdel.list(query).then(data => {
       this.onSearchResult(data)
     })
   },
 
   onSubmit(input) {
-    console.log(tag, 'onSubmit()', input)
     this.search(input)
   },
 
   onResetForm() {
-    console.log(tag, 'onResetForm()')
-    ResultView.hide()
+    this.renderView()
   },
 
   onSearchResult(data) {
@@ -67,7 +66,7 @@ export default {
     ResultView.render(data)
   },
 
-  onChangeTab(tabName) {
+  onChangeTab(tabName) { 
     debugger
   },
 
