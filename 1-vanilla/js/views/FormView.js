@@ -21,8 +21,15 @@ FormView.bindEvents = function () {
   this.inputEl.addEventListener('keyup', e => this.onKeyup(e))
 }
 
-FormView.onKeyup = function () {
+FormView.onKeyup = function (e) {
+  const enter = 13 // enter 키 코드 값
+  
   this.showResetBtn(this.inputEl.value.length)
+
+  if (e.keyCode !== enter) return
+  this.emit('@submit', {input: this.inputEl.value})
+  e.preventDefault()
+  return false
 }
 
 export default FormView
