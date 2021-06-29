@@ -14,14 +14,8 @@
     </header>
 
     <div class="container">
-      <form v-on:submit.prevent="onSubmit">
-        <!-- 
-          v-model 은 실제 Vue 인스턴스의 query라는 데이터 항목과 아래 input 태그가 바인딩되어
-          마치 동기화가 된것처럼 input의 value가 data.query 에 자동으로 값이 들어가 있다.
-        -->
-        <input type="text" v-model="query" v-on:keyup="onKeyup" placeholder="검색어를 입력하세요" autofocus>
-        <button v-show="query.length" v-on:click="onReset" type="reset" class="btn-reset"></button>
-      </form>
+      
+      <search-form></search-form>
       
       <div v-if="submitted">
         <div v-if="searchResult.length">
@@ -78,3 +72,10 @@
   <script type="module" src="./js/app.js"></script>
 </body>
 </html>
+
+<template id="search-form">
+  <form v-on:submit.prevent="onSubmit">
+    <input type="text" v-model="query" v-on:keyup="onKeyup" placeholder="검색어를 입력하세요" autofocus>
+    <button v-show="query.length" v-on:click="onReset" type="reset" class="btn-reset"></button>
+  </form>
+</template>
