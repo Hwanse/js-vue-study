@@ -24,14 +24,12 @@ new Vue({
         this.fetchHistory()
     },
     methods: {
-        onSubmit(e) {
+        onSubmit(query) {
+            this.query = query
             this.search()
         },
         onReset(e) {
             this.resetForm()
-        },
-        onKeyup() {
-            if (!this.query.length) this.resetForm()
         },
         search() {
             SearchModel.list().then(data => {
