@@ -3,6 +3,7 @@ import KeywordModel from './models/KeywordModel.js'
 import HistoryModel from './models/HistoryModel.js'
 
 import FormComponent from './components/FormComponent.js'
+import ResultComponent from './components/ResultComponent.js'
 
 new Vue({
     el: '#app',
@@ -16,7 +17,8 @@ new Vue({
         searchResult: []
     },
     components: {
-        'search-form': FormComponent
+        'search-form': FormComponent,
+        'search-result': ResultComponent
     },
     created() { // vue 인스턴스 라이프 사이클의 생성에 관한 이벤트 처리
         this.selectedTab = this.tabs[0]
