@@ -19,22 +19,20 @@
       <search-form v-bind:value="query" v-on:@submit="onSubmit" v-on:@reset="onReset"></search-form>
       
       
-      <div v-if="submitted">  <!-- 겸색 요청이 왔을 때 -->
+      <div v-if="submitted"> <!-- 겸색 요청이 왔을 때 -->
         <!-- 검색 결과 -->
         <search-result v-bind:data="searchResult" v-bind:query="query"></search-result>
       </div>
       <div v-else>
-        <ul class="tabs">
-          <li v-for="tab in tabs" v-bind:class="{active: tab === selectedTab}"
-              v-on:click="onClickTab(tab)">
-            {{tab}}
-          </li>
-        </ul>
+        <!-- 탭 -->
+        <tabs v-bind:tabs="tabs" v-bind:selected-tab="selectedTab" v-on:@change="onClickTab"></tabs>
         
+        <!-- 추천 검색어 리스트 -->
         <div v-if="selectedTab === tabs[0]">
           <list v-bind:data="keywords" type="keyword" v-on:@click="onClickKeyword"></list>
         </div>
 
+        <!-- 최근 검색어 리스트 -->
         <div v-else>
           <list v-bind:data="history" type="history" v-on:@click="onClickKeyword"
                 v-on:@remove="onClickRemoveHistory"></list>
@@ -84,4 +82,13 @@
     <span v-if="keywordType">추천 검색어가 없습니다</span>
     <span v-if="historyType">최근 검색어가 없습니다</span>
   </div>
+</template>
+
+<template id="tabs">
+  <ul class="tabs">
+    <li v-for="tab in tabs" v-bind:class="{active: tab === selectedTab}"
+        v-on:click="onClickTab(tab)">
+      {{tab}}
+    </li>
+  </ul>
 </template>

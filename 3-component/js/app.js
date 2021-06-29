@@ -5,6 +5,7 @@ import HistoryModel from './models/HistoryModel.js'
 import FormComponent from './components/FormComponent.js'
 import ResultComponent from './components/ResultComponent.js'
 import ListComponent from './components/ListComponent.js'
+import TabComponent from './components/TabComponent.js'
 
 new Vue({
     el: '#app',
@@ -20,7 +21,8 @@ new Vue({
     components: {
         'search-form': FormComponent,
         'search-result': ResultComponent,
-        'list': ListComponent
+        'list': ListComponent,
+        'tabs': TabComponent
     },
     created() { // vue 인스턴스 라이프 사이클의 생성에 관한 이벤트 처리
         this.selectedTab = this.tabs[0]
