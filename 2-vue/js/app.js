@@ -33,6 +33,8 @@ new Vue({
                 this.submitted = true
                 this.searchResult = data
             })
+            HistoryModel.add(this.query)
+            this.fetchHistory()
         },
         resetForm() {
             this.query = ''
@@ -55,6 +57,10 @@ new Vue({
         onClickKeyword(keyword) {
             this.query = keyword
             this.search()
+        },
+        onClickRemoveHistory(keyword) {
+            HistoryModel.remove(keyword)
+            this.fetchHistory()
         }
     }
 })
