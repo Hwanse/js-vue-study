@@ -1,4 +1,5 @@
 import SearchModel from './models/SearchModel.js'
+import KeywordModel from './models/KeywordModel.js'
 
 new Vue({
     el: '#app',
@@ -7,10 +8,12 @@ new Vue({
         submitted: false,
         tabs: ['추천 검색어', '최근 검색어'],
         selectedTab: '',
+        keywords: [],
         searchResult: []
     },
     created() { // vue 인스턴스 라이프 사이클의 생성에 관한 이벤트 처리
         this.selectedTab = this.tabs[0]
+        this.fetchKeyword()
     },
     methods: {
         onSubmit(e) {
@@ -35,6 +38,15 @@ new Vue({
         },
         onClickTab(tab) {
             this.selectedTab = tab
-        }
+        },
+        fetchKeyword() {
+            KeywordModel.list().then(data => {
+                this.keywords = data
+            })
+        },
+        onClickKeyword(keyword) {
+            this.query = keyword
+            this.search()
+        }  
     }
 })
