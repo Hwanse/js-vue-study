@@ -5,11 +5,17 @@
 
 <br>
 
-#### Vanilla Js 섹션
+#### Vanilla Js
 
 - 프론트에서의 MVC 패턴
 - 순수 자바스크립트로 UI를 그려보기
 
 <br>
 
-#### Vue Js 섹션
+#### Vue Js
+
+- MVVM 패턴
+- Vue Js 프레임워크란
+- Vue 를 황용한 UI 그리기
+- 컴포넌트 모듈 분리
+- 단일 컴포넌트 파일로 분리
