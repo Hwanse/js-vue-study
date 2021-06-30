@@ -5,9 +5,25 @@
     </header>
 
     <div class="container">
+      
       <search-form v-bind:value="query" v-on:@submit="onSubmit" v-on:@reset="onReset"></search-form>
-    </div>
 
+      <div v-if="submitted">
+        <search-result v-bind:data="searchResult" v-bind:query="query"></search-result>
+      </div>
+      <div v-else>
+        <tabs v-bind:tabs="tabs" v-bind:selected-tab="selectedTab" v-on:@change="onClickTab"></tabs>
+
+        <div v-if="selectedTab === tabs[0]">
+          <list v-bind:data="keywords" type="keyword" v-on:@click="onClickKeyword"></list>
+        </div>
+        <div v-else>
+          <list v-bind:data="history" type="history" v-on:@click="onClickKeyword"
+                v-on:@remove="onClickRemoveHistory"></list>
+        </div>
+      </div>
+      
+    </div>
   </div>
 </template>
 
@@ -17,7 +33,9 @@ import KeywordModel from './models/KeywordModel.js'
 import HistoryModel from './models/HistoryModel.js'
 
 import FormComponent from './components/FormComponent.vue'
-
+import ResultComponent from './components/ResulComponent.vue'
+import TabComponent from './components/TabComponent.vue'
+import ListComponent from './components/ListComponent.vue'
 
 export default {
   name: 'app',
@@ -32,8 +50,16 @@ export default {
       searchResult: []
     }
   },
+  created() { // vue 인스턴스 라이프 사이클의 생성에 관한 이벤트 처리
+      this.selectedTab = this.tabs[0]
+      this.fetchKeyword()
+      this.fetchHistory()
+  },
   components: {
-    'search-form': FormComponent
+    'search-form': FormComponent,
+    'search-result': ResultComponent,
+    'tabs': TabComponent,
+    'list': ListComponent
   },
   methods: {
     onSubmit(query) {

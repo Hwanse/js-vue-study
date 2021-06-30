@@ -18,7 +18,6 @@
       <!-- 검색 폼 -->
       <search-form v-bind:value="query" v-on:@submit="onSubmit" v-on:@reset="onReset"></search-form>
       
-      
       <div v-if="submitted"> <!-- 겸색 요청이 왔을 때 -->
         <!-- 검색 결과 -->
         <search-result v-bind:data="searchResult" v-bind:query="query"></search-result>
